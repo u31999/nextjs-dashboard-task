@@ -1,10 +1,12 @@
 import UserTable from "@/components/UserTable";
-import { absolute } from "@/lib/absolute";
 
 type User = { id: number; name: string; email: string };
 
 async function getUsers(): Promise<User[]> {
-  const res = await fetch(absolute("/api/users"), { cache: "no-store" });
+  const base = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
+  const url = new URL("/api/users", base).toString();
+
+  const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch users");
   const data = await res.json();
   return data.users as User[];
