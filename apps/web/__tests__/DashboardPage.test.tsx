@@ -1,11 +1,7 @@
-/**
- * We mock global.fetch to return the same payload as /api/users.
- * Then we render the server component by importing it and awaiting the default export.
- */
+
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
 
-// Mock fetch for the server function in page.tsx
 const mockUsers = [
   { id: 1, name: "Alice Jensen", email: "alice@example.com" },
   { id: 2, name: "Brian Ortiz",  email: "brian@example.com" }
